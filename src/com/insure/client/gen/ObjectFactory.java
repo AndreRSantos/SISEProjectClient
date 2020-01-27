@@ -24,8 +24,6 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _CheckIfWorking_QNAME = new QName("http://server.insure.com/", "checkIfWorking");
-    private final static QName _CheckIfWorkingResponse_QNAME = new QName("http://server.insure.com/", "checkIfWorkingResponse");
     private final static QName _CreateClaim_QNAME = new QName("http://server.insure.com/", "createClaim");
     private final static QName _CreateClaimResponse_QNAME = new QName("http://server.insure.com/", "createClaimResponse");
     private final static QName _RetrieveClaim_QNAME = new QName("http://server.insure.com/", "retrieveClaim");
@@ -38,22 +36,6 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
-    }
-
-    /**
-     * Create an instance of {@link CheckIfWorking }
-     * 
-     */
-    public CheckIfWorking createCheckIfWorking() {
-        return new CheckIfWorking();
-    }
-
-    /**
-     * Create an instance of {@link CheckIfWorkingResponse }
-     * 
-     */
-    public CheckIfWorkingResponse createCheckIfWorkingResponse() {
-        return new CheckIfWorkingResponse();
     }
 
     /**
@@ -110,32 +92,6 @@ public class ObjectFactory {
      */
     public Claim createClaim() {
         return new Claim();
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CheckIfWorking }{@code >}
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link CheckIfWorking }{@code >}
-     */
-    @XmlElementDecl(namespace = "http://server.insure.com/", name = "checkIfWorking")
-    public JAXBElement<CheckIfWorking> createCheckIfWorking(CheckIfWorking value) {
-        return new JAXBElement<CheckIfWorking>(_CheckIfWorking_QNAME, CheckIfWorking.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CheckIfWorkingResponse }{@code >}
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link CheckIfWorkingResponse }{@code >}
-     */
-    @XmlElementDecl(namespace = "http://server.insure.com/", name = "checkIfWorkingResponse")
-    public JAXBElement<CheckIfWorkingResponse> createCheckIfWorkingResponse(CheckIfWorkingResponse value) {
-        return new JAXBElement<CheckIfWorkingResponse>(_CheckIfWorkingResponse_QNAME, CheckIfWorkingResponse.class, null, value);
     }
 
     /**

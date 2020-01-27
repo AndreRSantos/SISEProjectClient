@@ -6,6 +6,8 @@ import com.insure.client.gen.ClaimDataStoreService;
 
 import javax.xml.ws.BindingProvider;
 
+//Wsimport.bat -s ..\src -keep -p com.insure.client.gen "http://localhost:8090/docstorage?wsdl"
+
 public class Main {
     public static void main(String args[]) throws InterruptedException{
         ClaimDataStoreService cService = new ClaimDataStoreService();
@@ -13,9 +15,9 @@ public class Main {
         final ClaimDataStore claim = (ClaimDataStore) cService.getClaimDataStorePort();
 
         ((BindingProvider) claim).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY,
-                "http://146.193.7.111:8090/docstorage");
+                "http://localhost:8090/docstorage");
 
-        System.out.println(claim.checkIfWorking());
+        System.out.println(claim.createClaim("Test!"));
 
     }
 

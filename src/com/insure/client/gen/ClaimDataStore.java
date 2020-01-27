@@ -28,6 +28,21 @@ public interface ClaimDataStore {
      * 
      * @param arg0
      * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "createClaim", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.CreateClaim")
+    @ResponseWrapper(localName = "createClaimResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.CreateClaimResponse")
+    @Action(input = "http://server.insure.com/ClaimDataStore/createClaimRequest", output = "http://server.insure.com/ClaimDataStore/createClaimResponse")
+    public int createClaim(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
      *     returns com.insure.client.gen.Claim
      */
     @WebMethod
@@ -53,29 +68,5 @@ public interface ClaimDataStore {
         int arg0,
         @WebParam(name = "arg1", targetNamespace = "")
         String arg1);
-
-    /**
-     * 
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "checkIfWorking", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.CheckIfWorking")
-    @ResponseWrapper(localName = "checkIfWorkingResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.CheckIfWorkingResponse")
-    @Action(input = "http://server.insure.com/ClaimDataStore/checkIfWorkingRequest", output = "http://server.insure.com/ClaimDataStore/checkIfWorkingResponse")
-    public String checkIfWorking();
-
-    /**
-     * 
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "createClaim", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.CreateClaim")
-    @ResponseWrapper(localName = "createClaimResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.CreateClaimResponse")
-    @Action(input = "http://server.insure.com/ClaimDataStore/createClaimRequest", output = "http://server.insure.com/ClaimDataStore/createClaimResponse")
-    public void createClaim(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
 
 }
