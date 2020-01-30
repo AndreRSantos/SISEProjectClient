@@ -24,6 +24,10 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _AddDocument_QNAME = new QName("http://server.insure.com/", "addDocument");
+    private final static QName _AddDocumentResponse_QNAME = new QName("http://server.insure.com/", "addDocumentResponse");
+    private final static QName _Connect_QNAME = new QName("http://server.insure.com/", "connect");
+    private final static QName _ConnectResponse_QNAME = new QName("http://server.insure.com/", "connectResponse");
     private final static QName _CreateClaim_QNAME = new QName("http://server.insure.com/", "createClaim");
     private final static QName _CreateClaimResponse_QNAME = new QName("http://server.insure.com/", "createClaimResponse");
     private final static QName _RetrieveClaim_QNAME = new QName("http://server.insure.com/", "retrieveClaim");
@@ -36,6 +40,38 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link AddDocument }
+     * 
+     */
+    public AddDocument createAddDocument() {
+        return new AddDocument();
+    }
+
+    /**
+     * Create an instance of {@link AddDocumentResponse }
+     * 
+     */
+    public AddDocumentResponse createAddDocumentResponse() {
+        return new AddDocumentResponse();
+    }
+
+    /**
+     * Create an instance of {@link Connect }
+     * 
+     */
+    public Connect createConnect() {
+        return new Connect();
+    }
+
+    /**
+     * Create an instance of {@link ConnectResponse }
+     * 
+     */
+    public ConnectResponse createConnectResponse() {
+        return new ConnectResponse();
     }
 
     /**
@@ -92,6 +128,58 @@ public class ObjectFactory {
      */
     public Claim createClaim() {
         return new Claim();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddDocument }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link AddDocument }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://server.insure.com/", name = "addDocument")
+    public JAXBElement<AddDocument> createAddDocument(AddDocument value) {
+        return new JAXBElement<AddDocument>(_AddDocument_QNAME, AddDocument.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddDocumentResponse }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link AddDocumentResponse }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://server.insure.com/", name = "addDocumentResponse")
+    public JAXBElement<AddDocumentResponse> createAddDocumentResponse(AddDocumentResponse value) {
+        return new JAXBElement<AddDocumentResponse>(_AddDocumentResponse_QNAME, AddDocumentResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Connect }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link Connect }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://server.insure.com/", name = "connect")
+    public JAXBElement<Connect> createConnect(Connect value) {
+        return new JAXBElement<Connect>(_Connect_QNAME, Connect.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ConnectResponse }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ConnectResponse }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://server.insure.com/", name = "connectResponse")
+    public JAXBElement<ConnectResponse> createConnectResponse(ConnectResponse value) {
+        return new JAXBElement<ConnectResponse>(_ConnectResponse_QNAME, ConnectResponse.class, null, value);
     }
 
     /**

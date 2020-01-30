@@ -1,8 +1,8 @@
 package com.insure.client;
 
-import com.insure.client.gen.Claim;
 import com.insure.client.gen.ClaimDataStore;
 import com.insure.client.gen.ClaimDataStoreService;
+import com.insure.client.gen.Client;
 
 import javax.xml.ws.BindingProvider;
 
@@ -10,15 +10,7 @@ import javax.xml.ws.BindingProvider;
 
 public class Main {
     public static void main(String args[]) throws InterruptedException{
-        ClaimDataStoreService cService = new ClaimDataStoreService();
-
-        final ClaimDataStore claim = (ClaimDataStore) cService.getClaimDataStorePort();
-
-        ((BindingProvider) claim).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY,
-                "http://localhost:8090/docstorage");
-
-        System.out.println(claim.createClaim("Test!"));
-
+        Client client0 = new Client();
     }
 
     public static void runService(){

@@ -26,6 +26,18 @@ public interface ClaimDataStore {
 
     /**
      * 
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "connect", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.Connect")
+    @ResponseWrapper(localName = "connectResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.ConnectResponse")
+    @Action(input = "http://server.insure.com/ClaimDataStore/connectRequest", output = "http://server.insure.com/ClaimDataStore/connectResponse")
+    public int connect();
+
+    /**
+     * 
      * @param arg0
      * @return
      *     returns int
@@ -38,6 +50,21 @@ public interface ClaimDataStore {
     public int createClaim(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "addDocument", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.AddDocument")
+    @ResponseWrapper(localName = "addDocumentResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.AddDocumentResponse")
+    @Action(input = "http://server.insure.com/ClaimDataStore/addDocumentRequest", output = "http://server.insure.com/ClaimDataStore/addDocumentResponse")
+    public void addDocument(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1);
 
     /**
      * 
