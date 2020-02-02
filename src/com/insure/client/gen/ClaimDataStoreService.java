@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "ClaimDataStoreService", targetNamespace = "http://server.insure.com/", wsdlLocation = "http://localhost:8090/docstorage?wsdl")
+@WebServiceClient(name = "ClaimDataStoreService", targetNamespace = "http://server.insure.com/", wsdlLocation = "http://192.168.1.68:8090/docstorage?wsdl")
 public class ClaimDataStoreService
     extends Service
 {
@@ -30,7 +30,7 @@ public class ClaimDataStoreService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://localhost:8090/docstorage?wsdl");
+            url = new URL("http://192.168.1.68:8090/docstorage?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

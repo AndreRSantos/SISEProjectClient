@@ -26,18 +26,22 @@ public interface ClaimDataStore {
 
     /**
      * 
+     * @param arg0
      * @return
-     *     returns int
+     *     returns java.lang.String
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "connect", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.Connect")
-    @ResponseWrapper(localName = "connectResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.ConnectResponse")
-    @Action(input = "http://server.insure.com/ClaimDataStore/connectRequest", output = "http://server.insure.com/ClaimDataStore/connectResponse")
-    public int connect();
+    @RequestWrapper(localName = "claimToString", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.ClaimToString")
+    @ResponseWrapper(localName = "claimToStringResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.ClaimToStringResponse")
+    @Action(input = "http://server.insure.com/ClaimDataStore/claimToStringRequest", output = "http://server.insure.com/ClaimDataStore/claimToStringResponse")
+    public String claimToString(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0);
 
     /**
      * 
+     * @param arg1
      * @param arg0
      * @return
      *     returns int
@@ -49,7 +53,9 @@ public interface ClaimDataStore {
     @Action(input = "http://server.insure.com/ClaimDataStore/createClaimRequest", output = "http://server.insure.com/ClaimDataStore/createClaimResponse")
     public int createClaim(
         @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        int arg1);
 
     /**
      * 
@@ -83,6 +89,7 @@ public interface ClaimDataStore {
 
     /**
      * 
+     * @param arg2
      * @param arg1
      * @param arg0
      */
@@ -94,6 +101,8 @@ public interface ClaimDataStore {
         @WebParam(name = "arg0", targetNamespace = "")
         int arg0,
         @WebParam(name = "arg1", targetNamespace = "")
-        String arg1);
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        int arg2);
 
 }

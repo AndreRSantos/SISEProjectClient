@@ -26,8 +26,8 @@ public class ObjectFactory {
 
     private final static QName _AddDocument_QNAME = new QName("http://server.insure.com/", "addDocument");
     private final static QName _AddDocumentResponse_QNAME = new QName("http://server.insure.com/", "addDocumentResponse");
-    private final static QName _Connect_QNAME = new QName("http://server.insure.com/", "connect");
-    private final static QName _ConnectResponse_QNAME = new QName("http://server.insure.com/", "connectResponse");
+    private final static QName _ClaimToString_QNAME = new QName("http://server.insure.com/", "claimToString");
+    private final static QName _ClaimToStringResponse_QNAME = new QName("http://server.insure.com/", "claimToStringResponse");
     private final static QName _CreateClaim_QNAME = new QName("http://server.insure.com/", "createClaim");
     private final static QName _CreateClaimResponse_QNAME = new QName("http://server.insure.com/", "createClaimResponse");
     private final static QName _RetrieveClaim_QNAME = new QName("http://server.insure.com/", "retrieveClaim");
@@ -59,19 +59,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Connect }
+     * Create an instance of {@link ClaimToString }
      * 
      */
-    public Connect createConnect() {
-        return new Connect();
+    public ClaimToString createClaimToString() {
+        return new ClaimToString();
     }
 
     /**
-     * Create an instance of {@link ConnectResponse }
+     * Create an instance of {@link ClaimToStringResponse }
      * 
      */
-    public ConnectResponse createConnectResponse() {
-        return new ConnectResponse();
+    public ClaimToStringResponse createClaimToStringResponse() {
+        return new ClaimToStringResponse();
     }
 
     /**
@@ -157,29 +157,29 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Connect }{@code >}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ClaimToString }{@code >}
      * 
      * @param value
      *     Java instance representing xml element's value.
      * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link Connect }{@code >}
+     *     the new instance of {@link JAXBElement }{@code <}{@link ClaimToString }{@code >}
      */
-    @XmlElementDecl(namespace = "http://server.insure.com/", name = "connect")
-    public JAXBElement<Connect> createConnect(Connect value) {
-        return new JAXBElement<Connect>(_Connect_QNAME, Connect.class, null, value);
+    @XmlElementDecl(namespace = "http://server.insure.com/", name = "claimToString")
+    public JAXBElement<ClaimToString> createClaimToString(ClaimToString value) {
+        return new JAXBElement<ClaimToString>(_ClaimToString_QNAME, ClaimToString.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ConnectResponse }{@code >}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ClaimToStringResponse }{@code >}
      * 
      * @param value
      *     Java instance representing xml element's value.
      * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link ConnectResponse }{@code >}
+     *     the new instance of {@link JAXBElement }{@code <}{@link ClaimToStringResponse }{@code >}
      */
-    @XmlElementDecl(namespace = "http://server.insure.com/", name = "connectResponse")
-    public JAXBElement<ConnectResponse> createConnectResponse(ConnectResponse value) {
-        return new JAXBElement<ConnectResponse>(_ConnectResponse_QNAME, ConnectResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://server.insure.com/", name = "claimToStringResponse")
+    public JAXBElement<ClaimToStringResponse> createClaimToStringResponse(ClaimToStringResponse value) {
+        return new JAXBElement<ClaimToStringResponse>(_ClaimToStringResponse_QNAME, ClaimToStringResponse.class, null, value);
     }
 
     /**

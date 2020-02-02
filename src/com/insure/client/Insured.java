@@ -17,7 +17,7 @@ public class Insured {
         this.claim = (ClaimDataStore) cService.getClaimDataStorePort();
 
         ((BindingProvider) claim).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY,
-                "http://localhost:8090/docstorage");
+                "http://192.168.1.68:8090/docstorage");
 
     }
 
@@ -25,14 +25,17 @@ public class Insured {
         //encrypt data
 
         //return claimID
-        return claim.createClaim(claimDescription);
+        return claim.createClaim(claimDescription, number);
+    }
+
+    public String claimToString(int claimId){
+        return claim.claimToString(claimId);
     }
 
     public void addDocument(String docContent, int claimId){
         // encrypt data
 
-        //mehtod not yet created:
-        //claim.addDocument(claimId, docContent)
+        claim.addDocument(claimId, docContent);
     }
 
 }
