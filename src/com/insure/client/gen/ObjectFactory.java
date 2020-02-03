@@ -30,10 +30,10 @@ public class ObjectFactory {
     private final static QName _ClaimToStringResponse_QNAME = new QName("http://server.insure.com/", "claimToStringResponse");
     private final static QName _CreateClaim_QNAME = new QName("http://server.insure.com/", "createClaim");
     private final static QName _CreateClaimResponse_QNAME = new QName("http://server.insure.com/", "createClaimResponse");
+    private final static QName _EditDocument_QNAME = new QName("http://server.insure.com/", "editDocument");
+    private final static QName _EditDocumentResponse_QNAME = new QName("http://server.insure.com/", "editDocumentResponse");
     private final static QName _ListDocuments_QNAME = new QName("http://server.insure.com/", "listDocuments");
     private final static QName _ListDocumentsResponse_QNAME = new QName("http://server.insure.com/", "listDocumentsResponse");
-    private final static QName _UpdateClaim_QNAME = new QName("http://server.insure.com/", "updateClaim");
-    private final static QName _UpdateClaimResponse_QNAME = new QName("http://server.insure.com/", "updateClaimResponse");
     private final static QName _ViewDocument_QNAME = new QName("http://server.insure.com/", "viewDocument");
     private final static QName _ViewDocumentResponse_QNAME = new QName("http://server.insure.com/", "viewDocumentResponse");
 
@@ -93,6 +93,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link EditDocument }
+     * 
+     */
+    public EditDocument createEditDocument() {
+        return new EditDocument();
+    }
+
+    /**
+     * Create an instance of {@link EditDocumentResponse }
+     * 
+     */
+    public EditDocumentResponse createEditDocumentResponse() {
+        return new EditDocumentResponse();
+    }
+
+    /**
      * Create an instance of {@link ListDocuments }
      * 
      */
@@ -106,22 +122,6 @@ public class ObjectFactory {
      */
     public ListDocumentsResponse createListDocumentsResponse() {
         return new ListDocumentsResponse();
-    }
-
-    /**
-     * Create an instance of {@link UpdateClaim }
-     * 
-     */
-    public UpdateClaim createUpdateClaim() {
-        return new UpdateClaim();
-    }
-
-    /**
-     * Create an instance of {@link UpdateClaimResponse }
-     * 
-     */
-    public UpdateClaimResponse createUpdateClaimResponse() {
-        return new UpdateClaimResponse();
     }
 
     /**
@@ -219,6 +219,32 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link EditDocument }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link EditDocument }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://server.insure.com/", name = "editDocument")
+    public JAXBElement<EditDocument> createEditDocument(EditDocument value) {
+        return new JAXBElement<EditDocument>(_EditDocument_QNAME, EditDocument.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link EditDocumentResponse }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link EditDocumentResponse }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://server.insure.com/", name = "editDocumentResponse")
+    public JAXBElement<EditDocumentResponse> createEditDocumentResponse(EditDocumentResponse value) {
+        return new JAXBElement<EditDocumentResponse>(_EditDocumentResponse_QNAME, EditDocumentResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ListDocuments }{@code >}
      * 
      * @param value
@@ -242,32 +268,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://server.insure.com/", name = "listDocumentsResponse")
     public JAXBElement<ListDocumentsResponse> createListDocumentsResponse(ListDocumentsResponse value) {
         return new JAXBElement<ListDocumentsResponse>(_ListDocumentsResponse_QNAME, ListDocumentsResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link UpdateClaim }{@code >}
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link UpdateClaim }{@code >}
-     */
-    @XmlElementDecl(namespace = "http://server.insure.com/", name = "updateClaim")
-    public JAXBElement<UpdateClaim> createUpdateClaim(UpdateClaim value) {
-        return new JAXBElement<UpdateClaim>(_UpdateClaim_QNAME, UpdateClaim.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link UpdateClaimResponse }{@code >}
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link UpdateClaimResponse }{@code >}
-     */
-    @XmlElementDecl(namespace = "http://server.insure.com/", name = "updateClaimResponse")
-    public JAXBElement<UpdateClaimResponse> createUpdateClaimResponse(UpdateClaimResponse value) {
-        return new JAXBElement<UpdateClaimResponse>(_UpdateClaimResponse_QNAME, UpdateClaimResponse.class, null, value);
     }
 
     /**

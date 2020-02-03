@@ -49,5 +49,7 @@ public class Client {
         return claim.listDocuments(number,claimID);
     }
 
-
+    public void editDocument(int docID, String docContent, int claimID){
+        claim.editDocument(number, claimID, docID, docContent);
+    }
 }

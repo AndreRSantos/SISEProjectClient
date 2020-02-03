@@ -50,7 +50,7 @@ public class Main {
 
         public void run(){
             try {
-               Client client0 = new Client("role", this.id);
+               //Client client0 = new Client("role", this.id);
                Client client1=new Client("officer", 1);
 
                 int claimID = client1.createClaim("Test claim " + this.id);
@@ -61,7 +61,10 @@ public class Main {
                 System.out.println(this.id + "_thread: " + "View"+ client1.viewDocument(docID,claimID));
 
 
-                client0.addDocument("Document 2 frm insured" + this.id, claimID);
+                client1.addDocument("Document 2 frm insured" + this.id, claimID);
+                client1.editDocument(docID,"New document",claimID);
+                System.out.println(client1.viewDocument(docID,claimID));
+
 
                 System.out.println(this.id + "_thread: " + client1.claimToString(claimID));
             } catch (ClientException e)  {
