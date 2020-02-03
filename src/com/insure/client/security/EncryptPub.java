@@ -14,14 +14,12 @@ import java.util.Base64;
 import java.util.Scanner;
 
 
-public class AsymEncryptPub {
+public class EncryptPub {
     private Cipher cipher;
-    private String key;
     private String message;
 
-    public AsymEncryptPub(String key, String message) throws NoSuchAlgorithmException, NoSuchPaddingException {
+    public EncryptPub(String message) throws NoSuchAlgorithmException, NoSuchPaddingException {
         this.cipher = Cipher.getInstance("RSA");
-        this.key = key;
         this.message = message;
     }
 
@@ -42,32 +40,12 @@ public class AsymEncryptPub {
         return Base64.getEncoder().encodeToString(cipher.doFinal(msg.getBytes("UTF-8")));
     }
 
-
-    public static void main(String[] args) throws Exception {
-        //start the encryption framework
-        AsymEncryptPub ac = new AsymEncryptPub("serverPublicKey", "code this");
-
-        // load the public key
-        System.out.print("insert the path to the public keyfile (ex. 'keys\\user1PublicKey'): ");
-        Scanner path = new Scanner(System.in);
-        String keyfile = path.nextLine();
-        PublicKey publicKey = ac.getPublic(Paths.get("").toAbsolutePath() + System.getProperty("file.separator") + keyfile);
-
-        //read message from the command line
-        System.out.print("Message: ");
-        Scanner in = new Scanner(System.in);
-        String msg = in.nextLine();
-
-        //encrypt the message
-        String encrypted_msg = ac.encryptText(msg, publicKey);
-
-        System.out.println("Original Message: " + msg +
-                "\nEncrypted Message: " + encrypted_msg);
-
+    public String getEncryptedMsg() throws Exception {
+        PublicKey publicKey = this.getPublic(Paths.get("").toAbsolutePath() + System.getProperty("file.separator") + "keys/Public/serverPublicKey");
+        return  this.encryptText(this.message, publicKey);
     }
 
-    public String getEncryptedMsg() throws Exception {
-        PublicKey publicKey = this.getPublic(Paths.get("").toAbsolutePath() + System.getProperty("file.separator") + "keys/Public" + System.getProperty("file.separator") + this.key);
-        return  this.encryptText(this.message, publicKey);
+    public static String encryptMsg(String msg) throws Exception{
+        return  (new EncryptPub(msg)).getEncryptedMsg();
     }
 }

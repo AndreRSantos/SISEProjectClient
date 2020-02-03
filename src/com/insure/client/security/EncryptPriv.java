@@ -43,36 +43,13 @@ public class EncryptPriv {
         return Base64.getEncoder().encodeToString(cipher.doFinal(msg.getBytes("UTF-8")));
     }
 
-
-    public static void main(String[] args) throws Exception {
-        //start the encryption framework
-        EncryptPriv ac = new EncryptPriv("ok", "ok");
-
-        // load the private key
-        System.out.print("insert the path to the private keyfile (ex. 'keys\\user1PrivateKey') :");
-        Scanner path = new Scanner(System.in);
-        String keyfile = path.nextLine();
-        PrivateKey privateKey = ac.getPrivate(Paths.get("").toAbsolutePath() + System.getProperty("file.separator") + keyfile);
-
-        //read message from the command line
-        System.out.print("Message: ");
-        Scanner in = new Scanner(System.in);
-        String msg = in.nextLine();
-
-        //encrypt the message
-        String encrypted_msg = ac.encryptText(msg, privateKey);
-
-        System.out.println("Original Message: " + msg +
-                "\nEncrypted Message: " + encrypted_msg);
-    }
-
     public String getEncryptedMsg() throws Exception {
         PrivateKey prvKey = this.getPrivate(Paths.get("").toAbsolutePath() +
                 System.getProperty("file.separator") + "keys/Private" + System.getProperty("file.separator") + this.key + System.getProperty("file.separator") + this.key + "PrivateKey");
         return  this.encryptText(this.message, prvKey);
     }
 
-    public static String encrypt(String key, String message) throws Exception {
+    public static String encryptMsg(String key, String message) throws Exception {
         return (new EncryptPriv(key, message)).getEncryptedMsg();
     }
 

@@ -1,4 +1,4 @@
-package sise.cs.utils;
+package com.insure.client.security;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -14,11 +14,15 @@ import java.util.Base64;
 import java.util.Scanner;
 
 
-public class AsymDecryptPriv {
+public class DecryptPriv {
     private Cipher cipher;
+    private String key;
+    private String encryptMsg;
 
-    public AsymDecryptPriv() throws NoSuchAlgorithmException, NoSuchPaddingException {
+    public DecryptPriv(String key, String encryptMsg) throws NoSuchAlgorithmException, NoSuchPaddingException {
         this.cipher = Cipher.getInstance("RSA");
+        this.key = key;
+        this.encryptMsg = encryptMsg;
     }
 
 
@@ -38,29 +42,14 @@ public class AsymDecryptPriv {
         return new String(cipher.doFinal(Base64.getDecoder().decode(msg)), "UTF-8");
     }
 
-
-    public static void main(String[] args) throws Exception {
-        //start the encryption framework
-        AsymDecryptPriv ad = new AsymDecryptPriv();
-
-        //load private key file
-        System.out.print("insert the path to the private keyfile (ex. 'keys\\user1PrivateKey'): ");
-        Scanner path = new Scanner(System.in);
-        String keyfile = path.nextLine();
-
-        PrivateKey privateKey = ad.getPrivate(Paths.get("").toAbsolutePath() + System.getProperty("file.separator") + keyfile);
-
-        //read encrypted message from the command line
-        System.out.print("Encrypted Message: ");
-        Scanner in = new Scanner(System.in);
-        String encrypted_msg = in.nextLine();
-
-        //decrypt message
-        String decrypted_msg = ad.decryptText(encrypted_msg, privateKey);
-
-        System.out.println("\nEncrypted Message: " + encrypted_msg +
-                "\nDecrypted Message: " + decrypted_msg);
-
-
+    public String getEncryptedMsg() throws Exception {
+        PrivateKey prvKey = this.getPrivate(Paths.get("").toAbsolutePath() +
+                System.getProperty("file.separator") + "keys/Private" + System.getProperty("file.separator") + this.key + System.getProperty("file.separator") + this.key + "PrivateKey");
+        return  this.decryptText(this.encryptMsg, prvKey);
     }
+
+    public static String encryptMsg(String key, String message) throws Exception {
+        return (new EncryptPriv(key, message)).getEncryptedMsg();
+    }
+
 }
