@@ -9,15 +9,14 @@ public class Client {
     private String number;
     private final ClaimDataStore claim;
 
-    public Client(String role, int number){
+    public Client(String role, int number) throws ClientException {
         this.number = role + number;
 
         ClaimDataStoreService cService = new ClaimDataStoreService();
         this.claim = (ClaimDataStore) cService.getClaimDataStorePort();
 
         if(!role.equals("officer") && !role.equals("insured")){
-            System.out.println("invalis role!");
-            return;
+           throw new ClientException();
         }
 
         ((BindingProvider) claim).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY,
