@@ -30,10 +30,12 @@ public class ObjectFactory {
     private final static QName _ClaimToStringResponse_QNAME = new QName("http://server.insure.com/", "claimToStringResponse");
     private final static QName _CreateClaim_QNAME = new QName("http://server.insure.com/", "createClaim");
     private final static QName _CreateClaimResponse_QNAME = new QName("http://server.insure.com/", "createClaimResponse");
-    private final static QName _RetrieveClaim_QNAME = new QName("http://server.insure.com/", "retrieveClaim");
-    private final static QName _RetrieveClaimResponse_QNAME = new QName("http://server.insure.com/", "retrieveClaimResponse");
+    private final static QName _ListDocuments_QNAME = new QName("http://server.insure.com/", "listDocuments");
+    private final static QName _ListDocumentsResponse_QNAME = new QName("http://server.insure.com/", "listDocumentsResponse");
     private final static QName _UpdateClaim_QNAME = new QName("http://server.insure.com/", "updateClaim");
     private final static QName _UpdateClaimResponse_QNAME = new QName("http://server.insure.com/", "updateClaimResponse");
+    private final static QName _ViewDocument_QNAME = new QName("http://server.insure.com/", "viewDocument");
+    private final static QName _ViewDocumentResponse_QNAME = new QName("http://server.insure.com/", "viewDocumentResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.insure.client.gen
@@ -91,19 +93,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link RetrieveClaim }
+     * Create an instance of {@link ListDocuments }
      * 
      */
-    public RetrieveClaim createRetrieveClaim() {
-        return new RetrieveClaim();
+    public ListDocuments createListDocuments() {
+        return new ListDocuments();
     }
 
     /**
-     * Create an instance of {@link RetrieveClaimResponse }
+     * Create an instance of {@link ListDocumentsResponse }
      * 
      */
-    public RetrieveClaimResponse createRetrieveClaimResponse() {
-        return new RetrieveClaimResponse();
+    public ListDocumentsResponse createListDocumentsResponse() {
+        return new ListDocumentsResponse();
     }
 
     /**
@@ -123,11 +125,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Claim }
+     * Create an instance of {@link ViewDocument }
      * 
      */
-    public Claim createClaim() {
-        return new Claim();
+    public ViewDocument createViewDocument() {
+        return new ViewDocument();
+    }
+
+    /**
+     * Create an instance of {@link ViewDocumentResponse }
+     * 
+     */
+    public ViewDocumentResponse createViewDocumentResponse() {
+        return new ViewDocumentResponse();
     }
 
     /**
@@ -209,29 +219,29 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RetrieveClaim }{@code >}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListDocuments }{@code >}
      * 
      * @param value
      *     Java instance representing xml element's value.
      * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link RetrieveClaim }{@code >}
+     *     the new instance of {@link JAXBElement }{@code <}{@link ListDocuments }{@code >}
      */
-    @XmlElementDecl(namespace = "http://server.insure.com/", name = "retrieveClaim")
-    public JAXBElement<RetrieveClaim> createRetrieveClaim(RetrieveClaim value) {
-        return new JAXBElement<RetrieveClaim>(_RetrieveClaim_QNAME, RetrieveClaim.class, null, value);
+    @XmlElementDecl(namespace = "http://server.insure.com/", name = "listDocuments")
+    public JAXBElement<ListDocuments> createListDocuments(ListDocuments value) {
+        return new JAXBElement<ListDocuments>(_ListDocuments_QNAME, ListDocuments.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RetrieveClaimResponse }{@code >}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListDocumentsResponse }{@code >}
      * 
      * @param value
      *     Java instance representing xml element's value.
      * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link RetrieveClaimResponse }{@code >}
+     *     the new instance of {@link JAXBElement }{@code <}{@link ListDocumentsResponse }{@code >}
      */
-    @XmlElementDecl(namespace = "http://server.insure.com/", name = "retrieveClaimResponse")
-    public JAXBElement<RetrieveClaimResponse> createRetrieveClaimResponse(RetrieveClaimResponse value) {
-        return new JAXBElement<RetrieveClaimResponse>(_RetrieveClaimResponse_QNAME, RetrieveClaimResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://server.insure.com/", name = "listDocumentsResponse")
+    public JAXBElement<ListDocumentsResponse> createListDocumentsResponse(ListDocumentsResponse value) {
+        return new JAXBElement<ListDocumentsResponse>(_ListDocumentsResponse_QNAME, ListDocumentsResponse.class, null, value);
     }
 
     /**
@@ -258,6 +268,32 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://server.insure.com/", name = "updateClaimResponse")
     public JAXBElement<UpdateClaimResponse> createUpdateClaimResponse(UpdateClaimResponse value) {
         return new JAXBElement<UpdateClaimResponse>(_UpdateClaimResponse_QNAME, UpdateClaimResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ViewDocument }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ViewDocument }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://server.insure.com/", name = "viewDocument")
+    public JAXBElement<ViewDocument> createViewDocument(ViewDocument value) {
+        return new JAXBElement<ViewDocument>(_ViewDocument_QNAME, ViewDocument.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ViewDocumentResponse }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link ViewDocumentResponse }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://server.insure.com/", name = "viewDocumentResponse")
+    public JAXBElement<ViewDocumentResponse> createViewDocumentResponse(ViewDocumentResponse value) {
+        return new JAXBElement<ViewDocumentResponse>(_ViewDocumentResponse_QNAME, ViewDocumentResponse.class, null, value);
     }
 
 }
