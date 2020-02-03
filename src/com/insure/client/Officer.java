@@ -27,15 +27,15 @@ public class Officer {
     public String claimToString(int claimId) {
         return claim.claimToString(this.id, claimId);
     }
-    public void addDocument(String docContent, int claimId) {
+    public int addDocument(String docContent, int claimId) {
         // encrypt data
 
-        claim.addDocument("client", claimId, docContent);
+        return claim.addDocument("client", claimId, docContent);
     }
-    public String viewDocument(String Client, int claimID, int docID) {
+    public String viewDocument(int claimID, int docID) {
         return claim.viewDocument("client", claimID, docID);
     }
-    public Set<Integer> listDcouments(String client, int claimID) {
-        return (Set<Integer>) claim.listDocuments("client", claimID);
+    public String listDcouments(int claimID) {
+        return claim.listDocuments("client", claimID);
     }
 }
