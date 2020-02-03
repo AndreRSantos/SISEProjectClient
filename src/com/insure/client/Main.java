@@ -3,25 +3,28 @@ package com.insure.client;
 //Wsimport.bat -s ..\src -keep -p com.insure.client.gen "http://146.193.7.121:8090/docstorage?wsdl"
 
 public class Main {
-    public static void main(String args[]) throws InterruptedException {
-        Client insured0 = new Client("notexisting", 0);
+    public static void main(String args[]) throws InterruptedException, ClientException {
+       /* try {
+            Client insured0 = new Client("notexisting", 0);
 
-        int claimID = insured0.createClaim("Test claim");
+            int claimID = insured0.createClaim("Test claim");
 
-        int docID=insured0.addDocument("Document 1", claimID);
-        System.out.println(insured0.claimToString(claimID));
-        System.out.println(insured0.listDocuments(claimID));
-        System.out.println("View"+insured0.viewDocument(docID,claimID));
+            int docID = insured0.addDocument("Document 1", claimID);
+            System.out.println(insured0.claimToString(claimID));
+            System.out.println(insured0.listDocuments(claimID));
+            System.out.println("View" + insured0.viewDocument(docID, claimID));
 
 
-        insured0.addDocument("Document 2", claimID);
+            insured0.addDocument("Document 2", claimID);
 
-        System.out.println(insured0.claimToString(claimID));
+            System.out.println(insured0.claimToString(claimID));
+        } catch (ClientException e){
+            System.out.println("Client Exception");
+        }*/
 
         //testing several clients
 
 
-    /*
         Thread c0 = new insuredThread(0);
         Thread c1 = new insuredThread(1);
         Thread c2 = new insuredThread(2);
@@ -33,7 +36,7 @@ public class Main {
         c0.join();
         c1.join();
         c2.join();
-*/
+
 
     }
 
@@ -46,19 +49,29 @@ public class Main {
         }
 
         public void run(){
-            Client client0 = new Client("role", this.id);
+            try {
+               //Client client0 = new Client("role", this.id);
+               Client client1=new Client("officer", 1);
 
-            int claimID = client0.createClaim("Test claim " + this.id);
+                int claimID = client1.createClaim("Test claim " + this.id);
 
-            int docID= client0.addDocument("Document 1 from insured" + this.id, claimID);
-            System.out.println(this.id + "_thread: " + client0.claimToString(claimID));
-            System.out.println(this.id + "_thread: " + client0.listDocuments(claimID));
-            System.out.println(this.id + "_thread: " + "View"+ client0.viewDocument(docID,claimID));
+                int docID= client1.addDocument("Document 1 from insured" + this.id, claimID);
+                System.out.println(this.id + "_thread: " + client1.claimToString(claimID));
+                System.out.println(this.id + "_thread: " + client1.listDocuments(claimID));
+                System.out.println(this.id + "_thread: " + "View"+ client1.viewDocument(docID,claimID));
 
 
-            client0.addDocument("Document 2 frm insured" + this.id, claimID);
+                client1.addDocument("Document 2 frm insured" + this.id, claimID);
+                client1.editDocument(docID,"New document",claimID);
+                System.out.println(client1.viewDocument(docID,claimID));
 
-            System.out.println(this.id + "_thread: " + client0.claimToString(claimID));
+
+                System.out.println(this.id + "_thread: " + client1.claimToString(claimID));
+            } catch (ClientException e)  {
+                System.out.println("Client Exception");
+            }
+
+
         }
     }
 
