@@ -2,8 +2,23 @@ package com.insure.client;
 
 //Wsimport.bat -s ..\src -keep -p com.insure.client.gen "http://146.193.7.121:8090/docstorage?wsdl"
 
+import com.insure.client.security.EncryptPriv;
+
+import javax.crypto.NoSuchPaddingException;
+import java.security.NoSuchAlgorithmException;
+
 public class Main {
-    public static void main(String args[]) throws InterruptedException, ClientException {
+    public static void main(String args[]) throws Exception {
+
+        //teste de encriptacao
+        Client insured0 = new Client("insured", 0);
+
+        try {
+            int claimId = insured0.createClaim("test de encriptacao!!!");
+        } catch (Exception e){
+            System.out.println(e);
+        }
+
        /* try {
             Client insured0 = new Client("notexisting", 0);
 
@@ -24,7 +39,7 @@ public class Main {
 
         //testing several clients
 
-
+        /*
         Thread c0 = new insuredThread(0);
         Thread c1 = new insuredThread(1);
         Thread c2 = new insuredThread(2);
@@ -36,7 +51,7 @@ public class Main {
         c0.join();
         c1.join();
         c2.join();
-
+        */
 
     }
 
@@ -53,7 +68,7 @@ public class Main {
                //Client client0 = new Client("role", this.id);
                Client client1=new Client("officer", 1);
 
-                int claimID = client1.createClaim("Test claim " + this.id);
+                int claimID = client1.createClaim("Test claim ");
 
                 int docID= client1.addDocument("Document 1 from insured" + this.id, claimID);
                 System.out.println(this.id + "_thread: " + client1.claimToString(claimID));
@@ -69,6 +84,8 @@ public class Main {
                 System.out.println(this.id + "_thread: " + client1.claimToString(claimID));
             } catch (ClientException e)  {
                 System.out.println("Client Exception");
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
 

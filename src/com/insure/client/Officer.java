@@ -2,6 +2,7 @@ package com.insure.client;
 
 import com.insure.client.gen.ClaimDataStore;
 import com.insure.client.gen.ClaimDataStoreService;
+import com.insure.client.gen.Exception_Exception;
 
 import javax.xml.ws.BindingProvider;
 import java.util.Set;
@@ -20,7 +21,7 @@ public class Officer {
         ((BindingProvider) claim).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY,
                 "http://146.193.7.121:8090/docstorage");
     }
-    public int createClaim(String claimDescription) {
+    public int createClaim(String claimDescription) throws Exception_Exception {
 
         return claim.createClaim(this.id, claimDescription);
     }

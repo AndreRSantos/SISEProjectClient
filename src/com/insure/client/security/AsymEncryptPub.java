@@ -1,4 +1,4 @@
-package sise.cs.utils;
+package com.insure.client.security;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -16,9 +16,13 @@ import java.util.Scanner;
 
 public class AsymEncryptPub {
     private Cipher cipher;
+    private String key;
+    private String message;
 
-    public AsymEncryptPub() throws NoSuchAlgorithmException, NoSuchPaddingException {
+    public AsymEncryptPub(String key, String message) throws NoSuchAlgorithmException, NoSuchPaddingException {
         this.cipher = Cipher.getInstance("RSA");
+        this.key = key;
+        this.message = message;
     }
 
 
@@ -41,7 +45,7 @@ public class AsymEncryptPub {
 
     public static void main(String[] args) throws Exception {
         //start the encryption framework
-        AsymEncryptPub ac = new AsymEncryptPub();
+        AsymEncryptPub ac = new AsymEncryptPub("serverPublicKey", "code this");
 
         // load the public key
         System.out.print("insert the path to the public keyfile (ex. 'keys\\user1PublicKey'): ");
@@ -60,6 +64,10 @@ public class AsymEncryptPub {
         System.out.println("Original Message: " + msg +
                 "\nEncrypted Message: " + encrypted_msg);
 
+    }
 
+    public String getEncryptedMsg() throws Exception {
+        PublicKey publicKey = this.getPublic(Paths.get("").toAbsolutePath() + System.getProperty("file.separator") + "keys/Public" + System.getProperty("file.separator") + this.key);
+        return  this.encryptText(this.message, publicKey);
     }
 }

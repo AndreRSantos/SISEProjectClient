@@ -24,6 +24,7 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _Exception_QNAME = new QName("http://server.insure.com/", "Exception");
     private final static QName _AddDocument_QNAME = new QName("http://server.insure.com/", "addDocument");
     private final static QName _AddDocumentResponse_QNAME = new QName("http://server.insure.com/", "addDocumentResponse");
     private final static QName _ClaimToString_QNAME = new QName("http://server.insure.com/", "claimToString");
@@ -42,6 +43,14 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link Exception }
+     * 
+     */
+    public Exception createException() {
+        return new Exception();
     }
 
     /**
@@ -138,6 +147,19 @@ public class ObjectFactory {
      */
     public ViewDocumentResponse createViewDocumentResponse() {
         return new ViewDocumentResponse();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Exception }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link Exception }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://server.insure.com/", name = "Exception")
+    public JAXBElement<Exception> createException(Exception value) {
+        return new JAXBElement<Exception>(_Exception_QNAME, Exception.class, null, value);
     }
 
     /**

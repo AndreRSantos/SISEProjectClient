@@ -1,4 +1,4 @@
-package sise.cs.utils;
+package com.insure.client.security;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -14,11 +14,15 @@ import java.util.Base64;
 import java.util.Scanner;
 
 
-public class AsymEncryptPriv {
+public class EncryptPriv {
     private Cipher cipher;
+    private String message;
+    private String key;
 
-    public AsymEncryptPriv() throws NoSuchAlgorithmException, NoSuchPaddingException {
+    public EncryptPriv(String key, String message) throws NoSuchAlgorithmException, NoSuchPaddingException {
         this.cipher = Cipher.getInstance("RSA");
+        this.key = key;
+        this.message = message;
     }
 
 
@@ -42,7 +46,7 @@ public class AsymEncryptPriv {
 
     public static void main(String[] args) throws Exception {
         //start the encryption framework
-        AsymEncryptPriv ac = new AsymEncryptPriv();
+        EncryptPriv ac = new EncryptPriv("ok", "ok");
 
         // load the private key
         System.out.print("insert the path to the private keyfile (ex. 'keys\\user1PrivateKey') :");
@@ -60,7 +64,16 @@ public class AsymEncryptPriv {
 
         System.out.println("Original Message: " + msg +
                 "\nEncrypted Message: " + encrypted_msg);
-
-
     }
+
+    public String getEncryptedMsg() throws Exception {
+        PrivateKey prvKey = this.getPrivate(Paths.get("").toAbsolutePath() +
+                System.getProperty("file.separator") + "keys/Private" + System.getProperty("file.separator") + this.key + System.getProperty("file.separator") + this.key + "PrivateKey");
+        return  this.encryptText(this.message, prvKey);
+    }
+
+    public static String encrypt(String key, String message) throws Exception {
+        return (new EncryptPriv(key, message)).getEncryptedMsg();
+    }
+
 }
