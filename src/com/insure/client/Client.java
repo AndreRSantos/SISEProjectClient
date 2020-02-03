@@ -5,16 +5,20 @@ import com.insure.client.gen.ClaimDataStoreService;
 
 import javax.xml.ws.BindingProvider;
 
-public class Insured {
+public class Client {
     private String number;
     private final ClaimDataStore claim;
 
-    public Insured(int number){
-        this.number ="insured"+ number;
+    public Client(String role, int number){
+        this.number = role + number;
 
         ClaimDataStoreService cService = new ClaimDataStoreService();
-
         this.claim = (ClaimDataStore) cService.getClaimDataStorePort();
+
+        if(!role.equals("officer") && !role.equals("insured")){
+            System.out.println("invalis role!");
+            return;
+        }
 
         ((BindingProvider) claim).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY,
                 "http://146.193.7.121:8090/docstorage");
