@@ -29,7 +29,7 @@ public class Client {
 
     public int createClaim(String claimDescription) throws Exception {
         //return claimID
-        return claim.createClaim(clientID, EncryptPriv.encrypt(clientID, claimDescription));
+        return claim.createClaim(clientID, EncryptPriv.encryptMsg(clientID, claimDescription));
     }
 
     public String claimToString(int claimId){
