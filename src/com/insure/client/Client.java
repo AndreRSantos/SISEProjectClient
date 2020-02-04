@@ -32,32 +32,32 @@ public class Client {
         return claim.createClaim(clientID, EncryptPub.encryptMsg(claimDescription), Signature.signMessage(clientID, claimDescription));
     }
 
-    public String claimToString(int claimId){
+    public String claimToString(int claimId) throws Exception {
         //Encript request(claimId) with privateKey
-        //ToDo
+        EncryptPriv.encryptMsg("client", claimToString(claimId));
         return claim.claimToString(clientID, claimId);
     }
 
     public int addDocument(String docContent, int claimId){
         //Signature
-        //ToDo
         return claim.addDocument(clientID, claimId, docContent);
     }
 
-    public String viewDocument(int docId, int claimID){
+    public String viewDocument(int docId, int claimID) throws Exception {
         //Encript request(claimId) with privateKey
-        //ToDo
+        EncryptPriv.encryptMsg("client", viewDocument(docId, claimID));
         return claim.viewDocument(clientID, claimID, docId);
     }
 
-    public String listDocuments(int claimID ){
+    public String listDocuments(int claimID ) throws Exception {
         //Encript request(claimId) with privateKey
-        //ToDo
+        EncryptPriv.encryptMsg("client", listDocuments(claimID));
         return claim.listDocuments(clientID,claimID);
     }
 
     public void editDocument(int docID, String docContent, int claimID){
         //Encript request(claimId) with privateKey
+        // tem conflict com os types pode estar mal as acima tambem
         //Sign docContent = PrivaKey(docContent) + Signature(DocContent)
         //ToDo
         claim.editDocument(clientID, claimID, docID, docContent);
