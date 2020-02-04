@@ -28,39 +28,34 @@ public class Client {
     }
 
     public int createClaim(String claimDescription) throws Exception {
-        //information sent with signature
+        //Encrypted Claim send with client signature
         return claim.createClaim(clientID, EncryptPub.encryptMsg(claimDescription), Signature.signMessage(clientID, claimDescription));
     }
 
     public String claimToString(int claimId) throws Exception {
         //Encript request(claimId) with privateKey
-        EncryptPriv.encryptMsg("client", claimToString(claimId));
-        return claim.claimToString(clientID, claimId);
+        return claim.claimToString(clientID,EncryptPriv.encryptMsg(clientID,String.valueOf(claimId)));
     }
 
-    public int addDocument(String docContent, int claimId){
-        //Signature
-        return claim.addDocument(clientID, claimId, docContent);
+    public int addDocument(String docContent, int claimId) throws Exception {
+        //S
+        return claim.addDocument(clientID, claimId, EncryptPriv.encryptMsg(clientID,docContent));
     }
 
     public String viewDocument(int docId, int claimID) throws Exception {
         //Encript request(claimId) with privateKey
-        EncryptPriv.encryptMsg("client", viewDocument(docId, claimID));
-        return claim.viewDocument(clientID, claimID, docId);
+        return claim.viewDocument(clientID, EncryptPriv.encryptMsg(clientID,String.valueOf(claimID)), docId);
     }
 
     public String listDocuments(int claimID ) throws Exception {
         //Encript request(claimId) with privateKey
-        EncryptPriv.encryptMsg("client", listDocuments(claimID));
-        return claim.listDocuments(clientID,claimID);
+        return claim.listDocuments(clientID,EncryptPriv.encryptMsg(clientID,String.valueOf(claimID)));
     }
 
-    public void editDocument(int docID, String docContent, int claimID){
+    public void editDocument(int docID, String docContent, int claimID) throws Exception {
         //Encript request(claimId) with privateKey
-        // tem conflict com os types pode estar mal as acima tambem
         //Sign docContent = PrivaKey(docContent) + Signature(DocContent)
-        //ToDo
-        claim.editDocument(clientID, claimID, docID, docContent);
+        claim.editDocument(clientID, EncryptPriv.encryptMsg(clientID,String.valueOf(claimID)), docID, EncryptPriv.encryptMsg(clientID,docContent),Signature.signMessage(clientID,docContent));
     }
 
     public String getClientID(){
