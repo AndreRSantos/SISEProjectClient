@@ -3,10 +3,10 @@ package com.insure.client;
 import com.insure.client.gen.ClaimDataStore;
 import com.insure.client.gen.ClaimDataStoreService;
 import com.insure.client.security.EncryptPriv;
+import com.insure.client.security.EncryptPub;
+import com.insure.client.security.Signature;
 
-import javax.crypto.NoSuchPaddingException;
 import javax.xml.ws.BindingProvider;
-import java.security.NoSuchAlgorithmException;
 
 public class Client {
     private String clientID;
@@ -28,29 +28,38 @@ public class Client {
     }
 
     public int createClaim(String claimDescription) throws Exception {
-        //return claimID
-        return claim.createClaim(clientID, EncryptPriv.encryptMsg(clientID, claimDescription));
+        //information sent with signature
+        return claim.createClaim(clientID, EncryptPub.encryptMsg(claimDescription), Signature.signMessage(clientID, claimDescription));
     }
 
     public String claimToString(int claimId){
+        //Encript request(claimId) with privateKey
+        //ToDo
         return claim.claimToString(clientID, claimId);
     }
 
     public int addDocument(String docContent, int claimId){
-        // encrypt data
-
+        //Signature
+        //ToDo
         return claim.addDocument(clientID, claimId, docContent);
     }
 
     public String viewDocument(int docId, int claimID){
-            return claim.viewDocument(clientID, claimID, docId);
+        //Encript request(claimId) with privateKey
+        //ToDo
+        return claim.viewDocument(clientID, claimID, docId);
     }
 
     public String listDocuments(int claimID ){
+        //Encript request(claimId) with privateKey
+        //ToDo
         return claim.listDocuments(clientID,claimID);
     }
 
     public void editDocument(int docID, String docContent, int claimID){
+        //Encript request(claimId) with privateKey
+        //Sign docContent = PrivaKey(docContent) + Signature(DocContent)
+        //ToDo
         claim.editDocument(clientID, claimID, docID, docContent);
     }
 

@@ -13,11 +13,14 @@ public class Main {
         //teste de encriptacao
         Client insured0 = new Client("insured", 0);
 
+
         try {
-            int claimId = insured0.createClaim("test de encriptacao!!!");
+            int claimId = insured0.createClaim("test de assinatura");
+            System.out.println(insured0.claimToString(claimId));
         } catch (Exception e){
             System.out.println(e);
         }
+
 
        /* try {
             Client insured0 = new Client("notexisting", 0);
