@@ -2,24 +2,16 @@ package com.insure.client;
 
 //Wsimport.bat -s ..\src -keep -p com.insure.client.gen "http://146.193.7.121:8090/docstorage?wsdl"
 
-import com.insure.client.security.EncryptPriv;
-
-import javax.crypto.NoSuchPaddingException;
-import java.security.NoSuchAlgorithmException;
+import com.insure.client.security.EncryptPub;
 
 public class Main {
     public static void main(String args[]) throws Exception {
 
-        //teste de encriptacao
-        Client insured0 = new Client("insured", 0);
+        //testar todos os métodos
 
+        // testar cliente adiciona doc, officer altera doc, cliente veê dov
 
-        try {
-            int claimId = insured0.createClaim("test de assinatura");
-            System.out.println(insured0.claimToString(claimId));
-        } catch (Exception e){
-            System.out.println(e);
-        }
+        //testar em multihtread
 
 
        /* try {
@@ -59,6 +51,7 @@ public class Main {
     }
 
     //insure thread (for testing)
+    /*
     static class insuredThread extends Thread{
         private int id;
 
@@ -94,5 +87,7 @@ public class Main {
 
         }
     }
+
+     */
 
 }

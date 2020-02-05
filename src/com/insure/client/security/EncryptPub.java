@@ -41,7 +41,7 @@ public class EncryptPub {
     }
 
     public String getEncryptedMsg() throws Exception {
-        PublicKey publicKey = this.getPublic(Paths.get("").toAbsolutePath() + System.getProperty("file.separator") + "keys/Public/serverPublicKey");
+        PublicKey publicKey = this.getPublic(Paths.get("").toAbsolutePath() + System.getProperty("file.separator") + "keys/public/server/serverPublicKey");
         return  this.encryptText(this.message, publicKey);
     }
 

@@ -1,4 +1,4 @@
-package com.insure.server.security;
+package com.insure.client.security;
 
 import com.insure.client.security.DecryptPub;
 

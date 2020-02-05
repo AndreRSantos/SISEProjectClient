@@ -2,11 +2,10 @@ package com.insure.client;
 
 import com.insure.client.gen.ClaimDataStore;
 import com.insure.client.gen.ClaimDataStoreService;
-import com.insure.client.security.EncryptPriv;
-import com.insure.client.security.EncryptPub;
-import com.insure.client.security.Signature;
+import com.insure.client.security.*;
 
 import javax.xml.ws.BindingProvider;
+import java.util.List;
 
 public class Client {
     private String clientID;
@@ -33,29 +32,45 @@ public class Client {
     }
 
     public String claimToString(int claimId) throws Exception {
-        //Encript request(claimId) with privateKey
-        return claim.claimToString(clientID,EncryptPriv.encryptMsg(clientID,String.valueOf(claimId)));
+        String  encryptedID = EncryptPriv.encryptMsg(this.clientID, String.valueOf(claimId));
+        return claim.claimToString(clientID, encryptedID);
     }
 
     public int addDocument(String docContent, int claimId) throws Exception {
-        //S
-        return claim.addDocument(clientID, claimId, EncryptPriv.encryptMsg(clientID,docContent));
+        return claim.addDocument(clientID, claimId, EncryptPriv.encryptMsg(clientID,docContent), Signature.signMessage(clientID, docContent));
     }
 
     public String viewDocument(int docId, int claimID) throws Exception {
-        //Encript request(claimId) with privateKey
-        return claim.viewDocument(clientID, EncryptPriv.encryptMsg(clientID,String.valueOf(claimID)), docId);
+        //Encrypt request with privateKey to guarantee origin request
+        String  encryptedID = EncryptPriv.encryptMsg(this.clientID, String.valueOf(claimID));
+
+        //get document and signature
+        List<String> docAndSignature = claim.viewDocument(clientID, encryptedID, docId);
+
+        //check if client was the last one to change the document
+        boolean check = false;
+        try{
+            check = VerifySignature.checkSignature(this.clientID, docAndSignature.get(0), docAndSignature.get(1));
+        } catch(Exception e){
+            //if there was an error decrypting, the client was not the last changing the doc
+        }
+
+        String docContent = DecryptPub.decryptMsg(this.clientID, docAndSignature.get(0));
+
+        return "Document was last changed by you: " + check +
+                "\n Document Content: " + docContent;
     }
 
-    public String listDocuments(int claimID ) throws Exception {
-        //Encript request(claimId) with privateKey
-        return claim.listDocuments(clientID,EncryptPriv.encryptMsg(clientID,String.valueOf(claimID)));
+    public String listDocuments(int claimID) throws Exception {
+        //Encrypt request with privateKey to guarantee origin request
+        String  encryptedID = EncryptPriv.encryptMsg(this.clientID, String.valueOf(claimID));
+
+        return claim.listDocuments(clientID, encryptedID);
     }
 
     public void editDocument(int docID, String docContent, int claimID) throws Exception {
-        //Encript request(claimId) with privateKey
-        //Sign docContent = PrivaKey(docContent) + Signature(DocContent)
-        claim.editDocument(clientID, EncryptPriv.encryptMsg(clientID,String.valueOf(claimID)), docID, EncryptPriv.encryptMsg(clientID,docContent),Signature.signMessage(clientID,docContent));
+        //Send new signed document
+        claim.editDocument(this.clientID, claimID, docID, EncryptPriv.encryptMsg(clientID,docContent), Signature.signMessage(clientID,docContent));
     }
 
     public String getClientID(){

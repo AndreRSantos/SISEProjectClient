@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="arg0" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="arg1" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
+ *         &lt;element name="arg1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="arg2" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlType;
 public class ViewDocument {
 
     protected String arg0;
-    protected int arg1;
+    protected String arg1;
     protected int arg2;
 
     /**
@@ -66,16 +66,24 @@ public class ViewDocument {
     /**
      * Gets the value of the arg1 property.
      * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public int getArg1() {
+    public String getArg1() {
         return arg1;
     }
 
     /**
      * Sets the value of the arg1 property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setArg1(int value) {
+    public void setArg1(String value) {
         this.arg1 = value;
     }
 
