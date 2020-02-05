@@ -22,7 +22,7 @@ public class Client {
         }
 
         ((BindingProvider) claim).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY,
-                "http://146.193.7.121:8090/docstorage");
+                "http://146.193.7.111:8090/docstorage");
 
     }
 
@@ -73,7 +73,7 @@ public class Client {
         claim.editDocument(this.clientID, claimID, docID, EncryptPriv.encryptMsg(clientID,docContent), Signature.signMessage(clientID,docContent));
     }
 
-    public String getClientID(){
+    String getClientID(){
         return this.clientID;
     }
 
