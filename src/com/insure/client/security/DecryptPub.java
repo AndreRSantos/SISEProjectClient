@@ -17,10 +17,12 @@ import java.util.Scanner;
 public class DecryptPub {
     private Cipher cipher;
     private String encyptedMsg;
+    private String key;
 
-    public DecryptPub(String encyptedMsg) throws NoSuchAlgorithmException, NoSuchPaddingException {
+    public DecryptPub(String key, String encyptedMsg) throws NoSuchAlgorithmException, NoSuchPaddingException {
         this.cipher = Cipher.getInstance("RSA");
         this.encyptedMsg = encyptedMsg;
+        this.key = key;
     }
 
 
@@ -40,12 +42,16 @@ public class DecryptPub {
     }
     public String getDecryptedMsg() throws Exception {
         PublicKey prvKey = this.getPublic(Paths.get("").toAbsolutePath() +
-                System.getProperty("file.separator") + "keys/Public/serverPublicKey");
+                System.getProperty("file.separator") + "keys/Private" + System.getProperty("file.separator") + this.key + System.getProperty("file.separator") + this.key + "PrivateKey");
         return  this.decryptText(this.encyptedMsg, prvKey);
     }
 
     public static String decryptMsg(String msg) throws Exception {
-        return (new DecryptPub(msg).getDecryptedMsg());
+        return decryptMsg("server", msg);
+    }
+
+    public static String decryptMsg(String key, String msg) throws Exception{
+        return (new DecryptPub(key, msg).getDecryptedMsg());
     }
 
 }
