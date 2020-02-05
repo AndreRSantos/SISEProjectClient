@@ -22,7 +22,7 @@ public class Client {
         }
 
         ((BindingProvider) claim).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY,
-                "http://146.193.7.111:8090/docstorage");
+                "http://localhost:8090/docstorage");
 
     }
 
@@ -55,7 +55,7 @@ public class Client {
             //if there was an error decrypting, the client was not the last changing the doc
         }
 
-        String docContent = DecryptPub.decryptMsg(this.clientID, docAndSignature.get(0));
+        String docContent = DecryptPriv.decryptMsg(this.clientID, docAndSignature.get(0));
 
         return "Document was last changed by you: " + check +
                 "\n Document Content: " + docContent;

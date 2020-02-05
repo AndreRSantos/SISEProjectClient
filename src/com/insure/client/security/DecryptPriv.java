@@ -42,14 +42,14 @@ public class DecryptPriv {
         return new String(cipher.doFinal(Base64.getDecoder().decode(msg)), "UTF-8");
     }
 
-    public String getEncryptedMsg() throws Exception {
+    public String getDencryptedMsg() throws Exception {
         PrivateKey prvKey = this.getPrivate(Paths.get("").toAbsolutePath() +
                 System.getProperty("file.separator") + "keys/Private" + System.getProperty("file.separator") + this.key + System.getProperty("file.separator") + this.key + "PrivateKey");
         return  this.decryptText(this.encryptMsg, prvKey);
     }
 
-    public static String encryptMsg(String key, String message) throws Exception {
-        return (new EncryptPriv(key, message)).getEncryptedMsg();
+    public static String decryptMsg(String key, String message) throws Exception {
+        return (new DecryptPriv(key, message)).getDencryptedMsg();
     }
 
 }
