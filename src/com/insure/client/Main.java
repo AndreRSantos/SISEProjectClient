@@ -143,6 +143,7 @@ public class Main {
 
                     System.out.println(message);
                     JOptionPane.showMessageDialog(null, message);
+
                 } else {
                     System.out.println("This document ID is not valid. It must be a number.");
                     JOptionPane.showMessageDialog(null, "This document ID is not valid. It must be a number.");
