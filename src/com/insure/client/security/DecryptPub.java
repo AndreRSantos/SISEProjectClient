@@ -42,7 +42,7 @@ public class DecryptPub {
     }
     public String getDecryptedMsg() throws Exception {
         PublicKey prvKey = this.getPublic(Paths.get("").toAbsolutePath() +
-                System.getProperty("file.separator") + "keys/Private" + System.getProperty("file.separator") + this.key + System.getProperty("file.separator") + this.key + "PrivateKey");
+                System.getProperty("file.separator") + "keys/Public" + System.getProperty("file.separator") + this.key + System.getProperty("file.separator") + this.key + "PublicKey");
         return  this.decryptText(this.encyptedMsg, prvKey);
     }
 
