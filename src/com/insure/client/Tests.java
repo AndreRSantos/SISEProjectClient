@@ -9,7 +9,8 @@ public class Tests {
 
         //testar em multihtread
 
-        Client insured = new Client("insured", 1);
+
+        /*Client insured = new Client("insured", 1);
         Client insured2= new Client("insured",2);
         int id = insured.createClaim("Test claim");
         System.out.println(insured.claimToString(id));
@@ -22,9 +23,63 @@ public class Tests {
         System.out.println(insured.viewDocument(doc, id));
         System.out.println(insured.viewDocument(doc2,id));
         System.out.println(insured.listDocuments(id));
-        System.out.println(officer.listDocuments(id));
-        //insured2.editDocument(doc,"Fail",id);
+        System.out.println(officer.listDocuments(id));*/
 
 
+        //Multithread testing
+
+        Thread c0 = new insuredThread("client", 1);
+        Thread c1 = new insuredThread("client",2);
+        Thread c2 = new insuredThread("client",3);
+
+        c0.start();
+        c1.start();
+        c2.start();
+
+        c0.join();
+        c1.join();
+        c2.join();
+
+    }
+    static class insuredThread extends Thread{
+        private int id;
+        private String role;
+
+        public insuredThread(String role, int id){
+            this.id = id;
+            this.role = "insured";
+        }
+
+        public void run(){
+            Client client1= null;
+            try {
+                client1 = new Client(this.role, this.id);
+            } catch (ClientException e) {
+                e.printStackTrace();
+            }
+            int id = 0;
+            try {
+                id = client1.createClaim("Test claim");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            int doc = 0;
+            try {
+                doc = client1.addDocument("Documento de teste", id);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Client officer = null;
+            try {
+                officer = new Client("officer", 1);
+            } catch (ClientException e) {
+                e.printStackTrace();
+            }
+            try {
+                officer.editDocument(doc, "Documento alterado",id);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
