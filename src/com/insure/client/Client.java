@@ -55,10 +55,12 @@ public class Client {
             //if there was an error decrypting, the client was not the last changing the doc
         }
 
+        String verify ="";
+        if (!check) { verify = "not "; }
 
-
-        return "Document was last changed by you: " + check +
-                "\n Document Content: " + docContent;
+        return "Document was " + verify + "last changed by you!\n     " +
+                "\nDocument added date:\n     " + docAndSignature.get(2) +
+                "\n\nDocument Content:\n     " + docContent;
     }
 
     public String listDocuments(int claimID) throws Exception {
