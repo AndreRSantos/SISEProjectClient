@@ -1,7 +1,5 @@
 package com.insure.client.security;
 
-import com.insure.client.security.DecryptPub;
-
 import java.security.MessageDigest;
 
 public class VerifySignature {

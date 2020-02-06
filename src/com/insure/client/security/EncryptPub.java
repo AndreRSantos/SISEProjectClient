@@ -11,8 +11,6 @@ import java.nio.file.Paths;
 import java.security.*;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
-import java.util.Scanner;
-
 
 public class EncryptPub {
     private Cipher cipher;
@@ -41,7 +39,7 @@ public class EncryptPub {
     }
 
     public String getEncryptedMsg() throws Exception {
-        PublicKey publicKey = this.getPublic(Paths.get("").toAbsolutePath() + System.getProperty("file.separator") + "keys/public/server/serverPublicKey");
+        PublicKey publicKey = this.getPublic(Paths.get("").toAbsolutePath() + System.getProperty("file.separator") + "keysC/public/server/serverPublicKey");
         return  this.encryptText(this.message, publicKey);
     }
 

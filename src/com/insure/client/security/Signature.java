@@ -1,7 +1,6 @@
 package com.insure.client.security;
 
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 public class Signature {
     public static String signMessage(String key, String message) throws Exception {

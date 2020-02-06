@@ -11,8 +11,6 @@ import java.nio.file.Paths;
 import java.security.*;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.Base64;
-import java.util.Scanner;
-
 
 public class EncryptPriv {
     private Cipher cipher;
@@ -25,8 +23,6 @@ public class EncryptPriv {
         this.message = message;
     }
 
-
-    // https://docs.oracle.com/javase/8/docs/api/java/security/spec/PKCS8EncodedKeySpec.html
     public PrivateKey getPrivate(String filename) throws Exception {
         byte[] keyBytes = Files.readAllBytes(new File(filename).toPath());
         PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(keyBytes);
@@ -45,7 +41,7 @@ public class EncryptPriv {
 
     public String getEncryptedMsg() throws Exception {
         PrivateKey prvKey = this.getPrivate(Paths.get("").toAbsolutePath() +
-                System.getProperty("file.separator") + "keys/Private" + System.getProperty("file.separator") + this.key + System.getProperty("file.separator") + this.key + "PrivateKey");
+                System.getProperty("file.separator") + "keysC/Private" + System.getProperty("file.separator") + this.key + System.getProperty("file.separator") + this.key + "PrivateKey");
         return  this.encryptText(this.message, prvKey);
     }
 

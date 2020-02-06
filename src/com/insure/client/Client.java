@@ -3,7 +3,6 @@ package com.insure.client;
 import com.insure.client.gen.ClaimDataStore;
 import com.insure.client.gen.ClaimDataStoreService;
 import com.insure.client.security.*;
-
 import javax.xml.ws.BindingProvider;
 import java.util.List;
 

@@ -11,8 +11,6 @@ import java.nio.file.Paths;
 import java.security.*;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.Base64;
-import java.util.Scanner;
-
 
 public class DecryptPriv {
     private Cipher cipher;
@@ -44,7 +42,7 @@ public class DecryptPriv {
 
     public String getDencryptedMsg() throws Exception {
         PrivateKey prvKey = this.getPrivate(Paths.get("").toAbsolutePath() +
-                System.getProperty("file.separator") + "keys/Private" + System.getProperty("file.separator") + this.key + System.getProperty("file.separator") + this.key + "PrivateKey");
+                System.getProperty("file.separator") + "keysC/Private" + System.getProperty("file.separator") + this.key + System.getProperty("file.separator") + this.key + "PrivateKey");
         return  this.decryptText(this.encryptMsg, prvKey);
     }
 
