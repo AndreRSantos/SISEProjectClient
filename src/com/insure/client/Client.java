@@ -18,25 +18,11 @@ public class Client {
         this.claim = (ClaimDataStore) cService.getClaimDataStorePort();
 
         if(!role.equals("officer") && !role.equals("insured")){
-            throw new ClientException();
+            throw new ClientException("Role not valid");
         }
 
         ((BindingProvider) claim).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY,
                 "http://" + ip + ":8090/docstorage");
-    }
-
-    public Client(String role, int clientID) throws ClientException {
-        this.clientID = role + clientID;
-
-        ClaimDataStoreService cService = new ClaimDataStoreService();
-        this.claim = (ClaimDataStore) cService.getClaimDataStorePort();
-
-        if(!role.equals("officer") && !role.equals("insured")){
-            throw new ClientException();
-        }
-
-        ((BindingProvider) claim).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY,
-                "http://localhost:8090/docstorage");
     }
 
     public int createClaim(String claimDescription) throws Exception {

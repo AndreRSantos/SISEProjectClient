@@ -27,8 +27,11 @@ public class Main {
         while (true){
             String command = (String) JOptionPane.showInputDialog(null, "Select an option: ", "InSure claim management system",JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
+            //End client execution block
             if (command == null || command.contentEquals("Exit")){
                 return;
+
+            //Add claim block
             }else if (command.contentEquals("Create Claim")){
                 String description = JOptionPane.showInputDialog("Claim description: ");
 
@@ -48,83 +51,139 @@ public class Main {
                     JOptionPane.showMessageDialog(null, error);
                 }
 
-
+            //Print claim information block
             } else if (command.contentEquals("Print claim information")){
-                int claimId = Integer.parseInt(JOptionPane.showInputDialog("Please inform the claim ID you wish to print: "));
-                String claimContent = "";
-                try {
-                    claimContent = client.claimToString(claimId);
-                } catch (Exception e){
-                    claimContent = e.getMessage();
-                }
+                String sID = JOptionPane.showInputDialog("Please inform the claim ID you wish to print: ");
+                //check if claim ID format is valid
+                if (sID.matches("\\d+")) {
 
-                System.out.println(claimContent);
-                JOptionPane.showMessageDialog(null, claimContent);
+                    int claimId = Integer.parseInt(sID);
+                    String claimContent = "";
+                    try {
+                        claimContent = client.claimToString(claimId);
+                    } catch (Exception e) {
+                        claimContent = e.getMessage();
+                    }
 
-
-            } else if (command.contentEquals("Add document to claim")){
-                int claimId = Integer.parseInt(JOptionPane.showInputDialog("Please inform the claim ID you wish add a document to : "));
-                String docContent = JOptionPane.showInputDialog("Document content: ");
-
-                int docID = -1;
-                String error = null;
-                try{
-                    docID = client.addDocument(docContent, claimId);
-                } catch (Exception e){
-                    error = e.getMessage();
-                }
-
-                if(docID > -1){
-                    System.out.println("Your document was successfully registered with the number " + docID);
-                    JOptionPane.showMessageDialog(null, "Your document was successfully registered with the number " + docID);
+                    System.out.println(claimContent);
+                    JOptionPane.showMessageDialog(null, claimContent);
                 } else {
-                    System.out.println(error);
-                    JOptionPane.showMessageDialog(null, error);
+                    System.out.println("This claim ID is not valid. It must be a number.");
+                    JOptionPane.showMessageDialog(null, "This claim ID is not valid. It must be a number.");
                 }
 
+            //Add document to claim block
+            } else if (command.contentEquals("Add document to claim")){
+                String sID = JOptionPane.showInputDialog("Please inform the claim ID you wish add a document to : ");
 
+                //check if claim id is valid
+                if (sID.matches("\\d+")) {
+                    int claimId = Integer.parseInt(sID);
+                    String docContent = JOptionPane.showInputDialog("Document content: ");
+
+                    int docID = -1;
+                    String error = null;
+                    try {
+                        docID = client.addDocument(docContent, claimId);
+                    } catch (Exception e) {
+                        error = e.getMessage();
+                    }
+
+                    if (docID > -1) {
+                        System.out.println("Your document was successfully registered with the number " + docID);
+                        JOptionPane.showMessageDialog(null, "Your document was successfully registered with the number " + docID);
+                    } else {
+                        System.out.println(error);
+                        JOptionPane.showMessageDialog(null, error);
+                    }
+                } else {
+                    System.out.println("This claim ID is not valid. It must be a number.");
+                    JOptionPane.showMessageDialog(null, "This claim ID is not valid. It must be a number.");
+                }
+
+            //View document block
             } else if (command.contentEquals("View document")){
-                int claimId = Integer.parseInt(JOptionPane.showInputDialog("Please inform the claim ID which the document is associated with: "));
-                int docID = Integer.parseInt(JOptionPane.showInputDialog("Please inform the document ID you wish to view: "));
+                String sClaimID = JOptionPane.showInputDialog("Please inform the claim ID that contains the document you wish to view: ");
+                String sDocID = JOptionPane.showInputDialog("Please inform the document ID you wish to view: ");
 
-                String message = "";
-                try {
-                    message = client.viewDocument(docID, claimId);
-                } catch (Exception e){
-                    message = e.getMessage();
+                //check if format of claimID is valid
+                if(!sClaimID.matches("\\d+")){
+                    System.out.println("This claim ID is not valid. It must be a number.");
+                    JOptionPane.showMessageDialog(null, "This claim ID is not valid. It must be a number.");
+
+                //check if format of document ID is valid
+                } else if (!sDocID.matches("\\d+")) {
+                    System.out.println("This document ID is not valid. It must be a number.");
+                    JOptionPane.showMessageDialog(null, "This document ID is not valid. It must be a number.");
+
+                }else{
+
+                    int claimId = Integer.parseInt(sClaimID);
+                    int docID = Integer.parseInt(sDocID);
+
+                    String message = "";
+                    try {
+                        message = client.viewDocument(docID, claimId);
+                    } catch (Exception e) {
+                        message = e.getMessage();
+                    }
+
+                    System.out.println(message);
+                    JOptionPane.showMessageDialog(null, message);
                 }
-
-                System.out.println(message);
-                JOptionPane.showMessageDialog(null, message);
 
             } else if (command.contentEquals("List documents")){
-                int claimId = Integer.parseInt(JOptionPane.showInputDialog("Please inform the claim ID that contains the document you wish to list: "));
+                String sID = JOptionPane.showInputDialog("Please inform the claim ID from which you wish to list the documents: ");
 
-                String message = "";
-                try{
-                    client.listDocuments(claimId);
-                } catch (Exception e){
-                    message = e.getMessage();
+                //check if format of claim ID is valid
+                if (sID.matches("\\d+")) {
+                    int claimId = Integer.parseInt(sID);
+
+                    String message = "";
+                    try {
+                        message = client.listDocuments(claimId);
+                    } catch (Exception e) {
+                        message = e.getMessage();
+                    }
+
+                    System.out.println(message);
+                    JOptionPane.showMessageDialog(null, message);
+                } else {
+                    System.out.println("This document ID is not valid. It must be a number.");
+                    JOptionPane.showMessageDialog(null, "This document ID is not valid. It must be a number.");
                 }
 
-                System.out.println(message);
-                JOptionPane.showMessageDialog(null, message);
-
+            //Edit document block
             } else if (command.contentEquals("Edit document")){
-                int claimId = Integer.parseInt(JOptionPane.showInputDialog("Please inform the claim ID which the document is associated with: "));
-                int docID = Integer.parseInt(JOptionPane.showInputDialog("Please inform the document ID you wish to view: "));
-                String docContent = JOptionPane.showInputDialog("New content: ");
+                String sClaimID = JOptionPane.showInputDialog("Please inform the claim ID which the document is associated with: ");
+                String sDocID = JOptionPane.showInputDialog("Please inform the document ID you wish to edit: ");
 
-                try {
-                    client.editDocument(docID, docContent, claimId);
-                    System.out.println("Document successfully edited!");
-                    JOptionPane.showMessageDialog(null, "Document successfully edited!");
-                } catch (Exception e){
-                    System.out.println(e.getMessage());
-                    JOptionPane.showMessageDialog(null, e.getMessage());
+                //check if format of claimID is valid
+                if(!sClaimID.matches("\\d+")){
+                    System.out.println("This claim ID is not valid. It must be a number.");
+                    JOptionPane.showMessageDialog(null, "This claim ID is not valid. It must be a number.");
+
+                //check if format of document ID is valid
+                } else if (!sDocID.matches("\\d+")) {
+                    System.out.println("This document ID is not valid. It must be a number.");
+                    JOptionPane.showMessageDialog(null, "This document ID is not valid. It must be a number.");
+
+                }else {
+
+                    int claimId = Integer.parseInt(sClaimID);
+                    int docID = Integer.parseInt(sDocID);
+                    String docContent = JOptionPane.showInputDialog("New content: ");
+
+                    try {
+                        client.editDocument(docID, docContent, claimId);
+                        System.out.println("Document successfully edited!");
+                        JOptionPane.showMessageDialog(null, "Document successfully edited!");
+
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                        JOptionPane.showMessageDialog(null, e.getMessage());
+                    }
                 }
-
-
             }
         }
     }

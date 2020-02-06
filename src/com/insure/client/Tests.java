@@ -3,14 +3,14 @@ package com.insure.client;
 public class Tests {
     public static void main(String args[]) throws Exception {
 
-        Client insured = new Client("insured", 0);
-        Client insured2= new Client("insured",1);
+        Client insured = new Client("insured", 0, "localhost");
+        Client insured2= new Client("insured",1, "localhost");
         int id = insured.createClaim("Test claim");
         System.out.println(insured.claimToString(id));
         int doc = insured.addDocument("Documento de teste", id);
         int doc2= insured.addDocument("Documento de teste 2",id);
 
-        Client officer = new Client("officer", 0);
+        Client officer = new Client("officer", 0, "localhost");
         officer.editDocument(doc, "Documento alterado", id);
         System.out.println(officer.claimToString(id));
         System.out.println(insured.viewDocument(doc, id));
@@ -48,7 +48,7 @@ public class Tests {
         public void run(){
             Client client1= null;
             try {
-                client1 = new Client(this.role, this.id);
+                client1 = new Client(this.role, this.id, "localhost");
             } catch (ClientException e) {
                 e.printStackTrace();
             }
@@ -66,7 +66,7 @@ public class Tests {
             }
             Client officer = null;
             try {
-                officer = new Client("officer", oid);
+                officer = new Client("officer", oid, "localhost");
             } catch (ClientException e) {
                 e.printStackTrace();
             }
