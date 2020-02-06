@@ -10,7 +10,9 @@ public class Main {
     public static void main(String args[]) throws Exception {
 
         //start main class
+        String[] options = {"option1", "option2"};
+
+        String command = (String) JOptionPane.showInputDialog(null, "message", "title",JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
     }
-
 }

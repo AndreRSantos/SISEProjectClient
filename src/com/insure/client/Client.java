@@ -11,6 +11,20 @@ public class Client {
     private String clientID;
     private final ClaimDataStore claim;
 
+    public Client(String role, int clientID, String ip) throws ClientException {
+        this.clientID = role + clientID;
+
+        ClaimDataStoreService cService = new ClaimDataStoreService();
+        this.claim = (ClaimDataStore) cService.getClaimDataStorePort();
+
+        if(!role.equals("officer") && !role.equals("insured")){
+            throw new ClientException();
+        }
+
+        ((BindingProvider) claim).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY,
+                "http://" + ip + ":8090/docstorage");
+    }
+
     public Client(String role, int clientID) throws ClientException {
         this.clientID = role + clientID;
 
@@ -18,12 +32,11 @@ public class Client {
         this.claim = (ClaimDataStore) cService.getClaimDataStorePort();
 
         if(!role.equals("officer") && !role.equals("insured")){
-           throw new ClientException();
+            throw new ClientException();
         }
 
         ((BindingProvider) claim).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY,
                 "http://localhost:8090/docstorage");
-
     }
 
     public int createClaim(String claimDescription) throws Exception {
@@ -47,15 +60,17 @@ public class Client {
         //get document and signature
         List<String> docAndSignature = claim.viewDocument(clientID, encryptedID, docId);
 
+        String docContent = DecryptPriv.decryptMsg(this.clientID, docAndSignature.get(0));
+
         //check if client was the last one to change the document
         boolean check = false;
         try{
-            check = VerifySignature.checkSignature(this.clientID, docAndSignature.get(0), docAndSignature.get(1));
+            check = VerifySignature.checkSignature(this.clientID, docContent, docAndSignature.get(1));
         } catch(Exception e){
             //if there was an error decrypting, the client was not the last changing the doc
         }
 
-        String docContent = DecryptPriv.decryptMsg(this.clientID, docAndSignature.get(0));
+
 
         return "Document was last changed by you: " + check +
                 "\n Document Content: " + docContent;
