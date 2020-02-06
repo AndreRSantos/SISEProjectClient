@@ -10,10 +10,14 @@ public class Tests {
         //testar em multihtread
 
         Client insured = new Client("insured", 1);
-        Client insured2= new Client("insured",2);
         int id = insured.createClaim("Test claim");
-        System.out.println(insured.claimToString(id));
         int doc = insured.addDocument("Documento de teste", id);
+        System.out.println(insured.viewDocument(doc, id));
+
+
+        Client insured2= new Client("insured",2);
+        System.out.println(insured.claimToString(id));
+
         int doc2= insured.addDocument("Documento de teste 2",id);
 
         Client officer = new Client("officer", 0);
@@ -24,6 +28,8 @@ public class Tests {
         System.out.println(insured.listDocuments(id));
         System.out.println(officer.listDocuments(id));
         //insured2.editDocument(doc,"Fail",id);
+
+
 
 
     }
