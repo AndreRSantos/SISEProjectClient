@@ -4,10 +4,12 @@ package com.insure.client;
 
 import com.insure.client.security.EncryptPub;
 
+import javax.swing.*;
+
 public class Main {
     public static void main(String args[]) throws Exception {
 
-
+        //start main class
 
     }
 
