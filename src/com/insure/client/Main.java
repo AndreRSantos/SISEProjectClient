@@ -1,33 +1,12 @@
 package com.insure.client;
 
-//Wsimport.bat -s ..\src -keep -p com.insure.client.gen "http://localhost:8090/docstorage?wsdl"
+//wsimport.bat -s ..\src -keep -p com.insure.client.gen "http://localhost:8090/docstorage?wsdl"
 
 import com.insure.client.security.EncryptPub;
 
 public class Main {
     public static void main(String args[]) throws Exception {
 
-        //testar todos os métodos
-
-        // testar cliente adiciona doc, officer altera doc, cliente veê doc
-
-        //testar em multihtread
-
-        Client insured = new Client("insured", 1);
-        Client insured2= new Client("insured",2);
-        int id = insured.createClaim("Test claim");
-        System.out.println(insured.claimToString(id));
-        int doc = insured.addDocument("Documento de teste", id);
-        int doc2= insured.addDocument("Documento de teste 2",id);
-
-        Client officer = new Client("officer", 0);
-        officer.editDocument(doc, "Documento alterado", id);
-        System.out.println(officer.claimToString(id));
-        System.out.println(insured.viewDocument(doc, id));
-        System.out.println(insured.viewDocument(doc2,id));
-        System.out.println(insured.listDocuments(id));
-        System.out.println(officer.listDocuments(id));
-        //insured2.editDocument(doc,"Fail",id);
 
 
     }
