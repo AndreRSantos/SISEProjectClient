@@ -3,15 +3,8 @@ package com.insure.client;
 public class Tests {
     public static void main(String args[]) throws Exception {
 
-        //testar todos os métodos
-
-        // testar cliente adiciona doc, officer altera doc, cliente veê doc
-
-        //testar em multihtread
-
-
-        /*Client insured = new Client("insured", 1);
-        Client insured2= new Client("insured",2);
+        Client insured = new Client("insured", 0);
+        Client insured2= new Client("insured",1);
         int id = insured.createClaim("Test claim");
         System.out.println(insured.claimToString(id));
         int doc = insured.addDocument("Documento de teste", id);
@@ -23,14 +16,14 @@ public class Tests {
         System.out.println(insured.viewDocument(doc, id));
         System.out.println(insured.viewDocument(doc2,id));
         System.out.println(insured.listDocuments(id));
-        System.out.println(officer.listDocuments(id));*/
+        System.out.println(officer.listDocuments(id));
 
 
         //Multithread testing
 
-        Thread c0 = new insuredThread("client", 1);
-        Thread c1 = new insuredThread("client",2);
-        Thread c2 = new insuredThread("client",3);
+        Thread c0 = new insuredThread("client", 2,1);
+        Thread c1 = new insuredThread("client",3,2);
+        Thread c2 = new insuredThread("client",4,3);
 
         c0.start();
         c1.start();
@@ -39,15 +32,17 @@ public class Tests {
         c0.join();
         c1.join();
         c2.join();
-//Thread Creation
+    //Thread Creation
     }
     static class insuredThread extends Thread{
         private int id;
+        private int oid;
         private String role;
 
-        public insuredThread(String role, int id){
+        public insuredThread(String role, int id, int oid){
             this.id = id;
             this.role = "insured";
+            this.oid=oid;
         }
 
         public void run(){
@@ -71,7 +66,7 @@ public class Tests {
             }
             Client officer = null;
             try {
-                officer = new Client("officer", 1);
+                officer = new Client("officer", oid);
             } catch (ClientException e) {
                 e.printStackTrace();
             }
